@@ -1,7 +1,7 @@
 #sh-wd-wrapper{
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 450px;
   height: 210px;
   margin: 10px auto;
 }
@@ -32,16 +32,22 @@
 #sh-wd-form{
   padding: 10px 0px;
 }
-#sh-wd-label{
-  padding: 0px 10px;
+.sh-wd-label{
+  display: block;
+  float:left;
+  width: 120px;
 }
 .sh-wd-select{
   width: 100px;
+  margin-right: 10px;
+}
+.sh-wd-text{
+  width: 100px;
 }
 .sh-wd-button{
-  width: 120px;
+  width: 100px;
+  margin-right: 15px;
 }
-
 #select-face-y, #select-face-z{
   display: none;
 }
