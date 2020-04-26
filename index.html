@@ -13,15 +13,15 @@
     function showSelectFace () {
         var input_axis = document.getElementById('input-axis').value;
 
-        if( input_axis === "X"){
+        if( input_axis === "0"){
             document.getElementById('select-face-x').style.display = "inline";
             document.getElementById('select-face-y').style.display = "none";
             document.getElementById('select-face-z').style.display = "none";
-        }else if (input_axis === "Y"){
+        }else if (input_axis === "1"){
             document.getElementById('select-face-x').style.display = "none";
             document.getElementById('select-face-y').style.display = "inline";
             document.getElementById('select-face-z').style.display = "none";
-        }else if (input_axis === "Z"){
+        }else if (input_axis === "2"){
             document.getElementById('select-face-x').style.display = "none";
             document.getElementById('select-face-y').style.display = "none";
             document.getElementById('select-face-z').style.display = "inline";
@@ -33,11 +33,15 @@
     
     function do_script () {
     
+        var axis_array = ["X", "Y", "Z"];
+        var axis_num = document.getElementById('input-axis').value;
+        var select_face = document.getElementsByClassName('input-face')[axis_num];
+
         // 外部ファイルのPythonコードを読み込み.
         py_src = readFileToString('alignAxis.py');
 
-        py_src = py_src.replace("TARGET_AXIS", "\"" + document.getElementById('input-axis').value + "\"")
-        py_src = py_src.replace("TARGET_FACE", "\"" + document.getElementsByClassName('input-face').value + "\"")
+        py_src = py_src.replace("TARGET_AXIS", "\"" + axis_array[axis_num] + "\"")
+        py_src = py_src.replace("TARGET_FACE", "\"" + select_face.value + "\"")
 
         // スクリプトを実行と結果を書く.
         window.external.setScript(py_src);
@@ -62,27 +66,29 @@
 
                     <label for="input-axis">軸</label>
                     <select id="input-axis" form="sh-wd-form" onclick="showSelectFace();">
-                        <option value="X" selected>X軸</option>
-                        <option value="Y">Y軸</option>
-                        <option value="Z">Z軸</option>
+                        <option value="0" selected>X</option>
+                        <option value="1">Y</option>
+                        <option value="2">Z</option>
                     </select>
 
                     <label>面</label>
-                    <select id="select-face-z" class = "input-face" form="sh-wd-form">
+                    <select id="select-face-x" class = "input-face" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
-                        <option value="LEFT">左</option>
-                        <option value="RIGHT">右</option>
+                        <option value="FRONT">前</option>
+                        <option value="BACK">後</option>
                     </select>
                     <select id="select-face-y" class = "input-face" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
                         <option value="TOP">上</option>
                         <option value="BOTTOM">下</option>
                     </select>
-                    <select id="select-face-x" class = "input-face" form="sh-wd-form">
+                    <select id="select-face-z" class = "input-face" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
-                        <option value="FRONT">前</option>
-                        <option value="BACK">後</option>
+                        <option value="LEFT">左</option>
+                        <option value="RIGHT">右</option>
                     </select>
+
+                    <input type="text" id = "face-num" />
                     <input type="button" id = "align_axis" class = "sh-wd-form-text" onclick="do_script();"/>
                 </div>
                 
