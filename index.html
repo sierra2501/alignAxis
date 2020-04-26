@@ -64,34 +64,36 @@
             <form id="sh-wd-form">
                 <div>
 
-                    <label for="input-axis">軸</label>
-                    <select id="input-axis" form="sh-wd-form" onclick="showSelectFace();">
+                    <label for="input-axis" class = "sh-wd-label">軸</label>
+                    <select id="input-axis" class = "sh-wd-select" form="sh-wd-form" onclick="showSelectFace();">
                         <option value="0" selected>X</option>
                         <option value="1">Y</option>
                         <option value="2">Z</option>
                     </select>
-
+                </div>
+                <div>
                     <label>面</label>
-                    <select id="select-face-x" class = "input-face" form="sh-wd-form">
+                    <select id="select-face-x" class = "input-face sh-wd-select" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
                         <option value="FRONT">前</option>
                         <option value="BACK">後</option>
                     </select>
-                    <select id="select-face-y" class = "input-face" form="sh-wd-form">
+                    <select id="select-face-y" class = "input-face sh-wd-select" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
                         <option value="TOP">上</option>
                         <option value="BOTTOM">下</option>
                     </select>
-                    <select id="select-face-z" class = "input-face" form="sh-wd-form">
+                    <select id="select-face-z" class = "input-face sh-wd-select" form="sh-wd-form">
                         <option value="CENTER" selected>センター</option>
                         <option value="LEFT">左</option>
                         <option value="RIGHT">右</option>
                     </select>
-
-                    <input type="text" id = "face-num" />
-                    <input type="button" id = "align_axis" class = "sh-wd-form-text" onclick="do_script();"/>
+                    
                 </div>
-                
+                <div>
+                    <input type="button" class = "sh-wd-button" value = "実行する"onclick="do_script();"/>
+                </div>
+
             </form>
         </div>
 
