@@ -2,6 +2,7 @@ def main () :
 
     axis = TARGET_AXIS
     face = TARGET_FACE
+    coord = TARGET_COORD
 
     # バウンディングボックスの座標と中心座標
     box_size = xshade.scene().active_shape().bounding_box_size
@@ -11,13 +12,13 @@ def main () :
     if (axis == "Z"):
         
         if (face == "LEFT"):
-            distance = 0 - box_pos[0] - box_size[0]/2
+            distance = coord - box_pos[0] - box_size[0]/2
         elif (face == "RIGHT"):
-            distance = 0 - box_pos[0] + box_size[0]/2
+            distance = coord - box_pos[0] + box_size[0]/2
         elif (face == "CENTER"):
-            distance = 0 - box_pos[0]
+            distance = coord - box_pos[0]
         else:
-            distance = 0
+            distance = coord
 
         xshade.scene().move_object(None, None, None, [distance, 0.0, 0.0])
 
@@ -25,13 +26,13 @@ def main () :
     elif (axis == "X"):
         
         if (face == "FRONT"):
-            distance = 0 - box_pos[2] - box_size[2]/2
+            distance = coord - box_pos[2] - box_size[2]/2
         elif (face == "BACK"):
-            distance = 0 - box_pos[2] + box_size[2]/2
+            distance = coord - box_pos[2] + box_size[2]/2
         elif (face == "CENTER"):
-            distance = 0 - box_pos[2]
+            distance = coord - box_pos[2]
         else:
-            distance = 0
+            distance = coord
 
         xshade.scene().move_object(None, None, None, [0.0, 0.0, distance])
 
@@ -39,13 +40,13 @@ def main () :
     elif (axis == "Y"):
 
         if (face == "TOP"):
-            distance = 0 - box_pos[1] - box_size[1]/2
+            distance = coord - box_pos[1] - box_size[1]/2
         elif (face == "BOTTOM"):
-            distance = 0 - box_pos[1] + box_size[1]/2
+            distance = coord - box_pos[1] + box_size[1]/2
         elif (face == "CENTER"):
-            distance = 0 - box_pos[1]
+            distance = coord - box_pos[1]
         else:
-            distance = 0
+            distance = coord
 
         xshade.scene().move_object(None, None, None, [0.0,  distance, 0.0])
 

@@ -36,12 +36,14 @@
         var axis_array = ["X", "Y", "Z"];
         var axis_num = document.getElementById('input-axis').value;
         var select_face = document.getElementsByClassName('input-face')[axis_num];
+        var coord = document.getElementById('input-coord').value
 
         // 外部ファイルのPythonコードを読み込み.
         py_src = readFileToString('py/alignAxis.py');
 
         py_src = py_src.replace("TARGET_AXIS", "\"" + axis_array[axis_num] + "\"")
         py_src = py_src.replace("TARGET_FACE", "\"" + select_face.value + "\"")
+        py_src = py_src.replace("TARGET_COORD", coord)
 
         // スクリプトを実行と結果を書く.
         window.external.setScript(py_src);
@@ -70,6 +72,7 @@
                         <option value="1">Y</option>
                         <option value="2">Z</option>
                     </select>
+                    <input type="text" id = "input-coord" value = "0" />
                 </div>
                 <div>
                     <label>面</label>
