@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/gannet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/readExternalFile.js"></script>
+
+    <script type="text/javascript">
+
+    function showSelectFace () {
+        var input_axis = document.getElementById('input-axis').value;
+
+        if( input_axis === "0"){
+            document.getElementById('select-face-x').style.display = "inline";
+            document.getElementById('select-face-y').style.display = "none";
+            document.getElementById('select-face-z').style.display = "none";
+        }else if (input_axis === "1"){
+            document.getElementById('select-face-x').style.display = "none";
+            document.getElementById('select-face-y').style.display = "inline";
+            document.getElementById('select-face-z').style.display = "none";
+        }else if (input_axis === "2"){
+            document.getElementById('select-face-x').style.display = "none";
+            document.getElementById('select-face-y').style.display = "none";
+            document.getElementById('select-face-z').style.display = "inline";
+        }else{
+
+        }
+    }
+
+    
+    function do_script () {
+    
+        var axis_array = ["X", "Y", "Z"];
+        var axis_num = document.getElementById('input-axis').value;
+        var select_face = document.getElementsByClassName('input-face')[axis_num];
+        var coord = document.getElementById('input-coord').value
+
+        // 外部ファイルのPythonコードを読み込み.
+        py_src = readFileToString('py/alignAxis.py');
+
+        py_src = py_src.replace("TARGET_AXIS", "\"" + axis_array[axis_num] + "\"")
+        py_src = py_src.replace("TARGET_FACE", "\"" + select_face.value + "\"")
+        py_src = py_src.replace("TARGET_COORD", coord)
+        py_src = py_src.replace("TARGET_FLAG", "\"" + document.getElementById('input-checkbox').checked + "\"")
+
+        // スクリプトを実行と結果を書く.
+        window.external.setScript(py_src);
+    }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="sh-wd-wrapper">
+
+        <div id="sh-wd-header">
+            <h3>軸に合わせて移動する</h3>
+        </div>
+
+        
+
+        <div id="sh-wd-main">
+            <form id="sh-wd-form">
+                <div>
+                    <label for="input-axis" class = "sh-wd-label">基準とする軸</label>
+                    <select id="input-axis" class = "sh-wd-select" form="sh-wd-form" onclick="showSelectFace();">
+                        <option value="0" selected>X</option>
+                        <option value="1">Y</option>
+                        <option value="2">Z</option>
+                        <input type="text" id = "input-coord" class = "sh-wd-text" value = "0" />
+                    </select>
+                </div>
+                <div>
+                    <label class = "sh-wd-label">合わせる面</label>
+                    <select id="select-face-x" class = "input-face sh-wd-select" form="sh-wd-form">
+                        <option value="CENTER" selected>センター</option>
+                        <option value="LEFT">左</option>
+                        <option value="RIGHT">右</option>
+                    </select>
+                    <select id="select-face-y" class = "input-face sh-wd-select" form="sh-wd-form">
+                        <option value="CENTER" selected>センター</option>
+                        <option value="TOP">上</option>
+                        <option value="BOTTOM">下</option>
+                    </select>
+                    <select id="select-face-z" class = "input-face sh-wd-select" form="sh-wd-form">
+                        <option value="CENTER" selected>センター</option>
+                        <option value="FRONT">前</option>
+                        <option value="BACK">後</option>
+                    </select>
+                    
+                </div>
+                <div>
+                    <input type="button" class = "sh-wd-button" value = "実行する"onclick="do_script();"/>
+                    <input type="checkbox" id="input-checkbox" value="true" />
+                    <label for="input-checkbox" >個別に行う</label>
+                </div>
+
+            </form>
+        </div>
+
+        <div id="sh-wd-footer">
+            <p>@sierra2501</p>
+        </div>
+    </div>
+    
+
+</body>
+</html>
