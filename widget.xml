@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+    <uuid>f04341b1-b04d-49c2-ae56-97733a8e645b</uuid>
+    <name lang="ja">軸に合わせて移動する</name>
+    <name lang="en">alignAxis</name>
+    <url>index.html</url>
+    <version>1.0</version>
+    <description lang="ja">軸に合わせて移動する</description>
+    <description lang="en">alignAxis</description>
+    <window initial_size="400 200" position="0.42 0.63" resizeable="true">
+    </window>
+</widget>
