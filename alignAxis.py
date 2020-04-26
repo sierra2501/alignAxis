@@ -1,7 +1,7 @@
 def main () :
 
-    axis = "X"
-    face = "LEFT"
+    axis = TARGET_AXIS
+    face = TARGET_FACE
 
     # バウンディングボックスの座標と中心座標
     box_size = xshade.scene().active_shape().bounding_box_size
