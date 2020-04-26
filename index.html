@@ -38,7 +38,7 @@
         var select_face = document.getElementsByClassName('input-face')[axis_num];
 
         // 外部ファイルのPythonコードを読み込み.
-        py_src = readFileToString('alignAxis.py');
+        py_src = readFileToString('py/alignAxis.py');
 
         py_src = py_src.replace("TARGET_AXIS", "\"" + axis_array[axis_num] + "\"")
         py_src = py_src.replace("TARGET_FACE", "\"" + select_face.value + "\"")
