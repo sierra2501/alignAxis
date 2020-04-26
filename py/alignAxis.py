@@ -17,7 +17,7 @@ def main () :
         while(xshade.scene().active_shape().has_bro):
             xshade.scene().active_shape().bro.activate()
             alignAxis(axis, face, coord)
-            
+
         xshade.scene().active_shape().dad.activate()
 
 
@@ -29,21 +29,6 @@ def alignAxis (axis, face, coord):
 
     # Z軸に合わせる =============================================================================
     if (axis == "Z"):
-        
-        if (face == "LEFT"):
-            distance = coord - box_pos[0] - box_size[0]/2
-        elif (face == "RIGHT"):
-            distance = coord - box_pos[0] + box_size[0]/2
-        elif (face == "CENTER"):
-            distance = coord - box_pos[0]
-        else:
-            distance = coord
-
-        xshade.scene().move_object(None, None, None, [distance, 0.0, 0.0])
-
-    # X軸に合わせる =============================================================================
-    elif (axis == "X"):
-        
         if (face == "FRONT"):
             distance = coord - box_pos[2] - box_size[2]/2
         elif (face == "BACK"):
@@ -54,6 +39,20 @@ def alignAxis (axis, face, coord):
             distance = coord
 
         xshade.scene().move_object(None, None, None, [0.0, 0.0, distance])
+
+    # X軸に合わせる =============================================================================
+    elif (axis == "X"):
+        
+        if (face == "LEFT"):
+            distance = coord - box_pos[0] + box_size[0]/2
+        elif (face == "RIGHT"):
+            distance = coord - box_pos[0] - box_size[0]/2
+        elif (face == "CENTER"):
+            distance = coord - box_pos[0]
+        else:
+            distance = coord
+
+        xshade.scene().move_object(None, None, None, [distance, 0.0, 0.0])
 
     # Y軸に合わせる =============================================================================
     elif (axis == "Y"):
