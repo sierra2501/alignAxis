@@ -44,6 +44,7 @@
         py_src = py_src.replace("TARGET_AXIS", "\"" + axis_array[axis_num] + "\"")
         py_src = py_src.replace("TARGET_FACE", "\"" + select_face.value + "\"")
         py_src = py_src.replace("TARGET_COORD", coord)
+        py_src = py_src.replace("TARGET_FLAG", "\"" + document.getElementById('input-checkbox').checked + "\"")
 
         // スクリプトを実行と結果を書く.
         window.external.setScript(py_src);
@@ -92,6 +93,10 @@
                         <option value="RIGHT">右</option>
                     </select>
                     
+                </div>
+                <div>
+                    <input type="checkbox" name="hoge" id="input-checkbox" class = "sh-wd-checkbox" value="true" />
+                    <label for="input-checkbox" class = "sh-wd-label" >個別に行う</label>
                 </div>
                 <div>
                     <input type="button" class = "sh-wd-button" value = "実行する"onclick="do_script();"/>

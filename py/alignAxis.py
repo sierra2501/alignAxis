@@ -3,6 +3,25 @@ def main () :
     axis = TARGET_AXIS
     face = TARGET_FACE
     coord = TARGET_COORD
+    flag = TARGET_FLAG
+
+
+    if (flag == "false"):
+        alignAxis(axis, face, coord)
+        return
+    elif (flag == "true" and xshade.scene().active_shape().has_son == True):
+
+        xshade.scene().active_shape().son.bro.activate()
+        alignAxis(axis, face, coord)
+
+        while(xshade.scene().active_shape().has_bro):
+            xshade.scene().active_shape().bro.activate()
+            alignAxis(axis, face, coord)
+            
+        xshade.scene().active_shape().dad.activate()
+
+
+def alignAxis (axis, face, coord):
 
     # バウンディングボックスの座標と中心座標
     box_size = xshade.scene().active_shape().bounding_box_size
