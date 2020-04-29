@@ -1,4 +1,4 @@
-# test.py
+# alignAxis.py
 Shade3Dのスクリプト。軸に合わせて形状を移動します。
 
 ## インストール（Windows）
